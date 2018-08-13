@@ -7,7 +7,17 @@
     tools:context=".HomeActivity">
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sites:"/>
+    <TextView
         android:id="@+id/site_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"/>
 </android.support.constraint.ConstraintLayout>

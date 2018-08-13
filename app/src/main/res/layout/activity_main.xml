@@ -21,7 +21,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="16dp"
-        app:credentialsStorage="auto"
+        app:oauthConsumerKey="246c682c-fceb-4113-b6bf-473d6fa494ef"
+        app:oauthConsumerSecret="9d016d4e52b65d5fdbff40b016ecb670"
+        app:loginMode="oauth"
+        app:credentialsStorage="shared_preferences"
         app:layoutId="@layout/login_default"/>
 
 </android.support.constraint.ConstraintLayout>
