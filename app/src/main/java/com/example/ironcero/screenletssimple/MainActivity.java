@@ -46,20 +46,9 @@ public class MainActivity extends AppCompatActivity implements LoginListener{
         try {
             if (resultCode == Activity.RESULT_OK) {
                 Log.i(_TAG, "Usuario logado con exito");
-
-                OAuthConfig config = (OAuthConfig) data.getSerializableExtra(
-                        OAuthActivity.EXTRA_OAUTH_CONFIG);
-
-                String consumerKey = config.getConsumerKey();
-                String consumerSecret = config.getConsumerSecret();
-                String token = config.getToken();
-                String tokenSecret = config.getTokenSecret();
-
-                Authentication auth = new OAuth(consumerKey, consumerSecret, token, tokenSecret);
-                Session session = new SessionImpl(getString(R.string.liferay_server), auth);
-
-                session.setCallback(getCallback(this, config));
-                ServiceProvider.getInstance().getCurrentUserConnector(session).getCurrentUser();
+                _loginScreenlet.sendOAuthResult(resultCode, data);
+                Intent it = new Intent(this, HomeActivity.class);
+                startActivity(it);
             }
         }catch (Exception exception){
             Log.e(_TAG, "err: ", exception);
@@ -76,34 +65,6 @@ public class MainActivity extends AppCompatActivity implements LoginListener{
     public void onLoginFailure(Exception e) {
 
     }
-
-    private JSONObjectCallback getCallback(final AppCompatActivity mainActivity, final OAuthConfig config){
-        return new JSONObjectCallback(){
-
-
-            @Override
-            public void onFailure(Exception exception) {
-                Log.e(_TAG, "Error during service call", exception);
-                Toast.makeText(mainActivity,"Error during service call", Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onSuccess(JSONObject result) {
-                Log.i(_TAG, "Resultado: "+ result.toString());
-
-                User currentUser = new User(result);
-                SessionContext.setCurrentUser(currentUser);
-                SessionContext.createOAuthSession(config);
-
-                SessionContext.storeCredentials(CredentialsStorageBuilder.StorageType.SHARED_PREFERENCES);
-
-                Intent it = new Intent(mainActivity, HomeActivity.class);
-                startActivity(it);
-            }
-        };
-    }
-
-
 
     private LoginScreenlet _loginScreenlet;
 
