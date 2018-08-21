@@ -15,6 +15,7 @@ import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.storage.CredentialsStorageBuilder;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -31,9 +32,14 @@ public class HomeActivity extends AppCompatActivity {
             Button logoutButton = (Button) findViewById(R.id.logout_button);
             logoutButton.setOnClickListener(getLogoutClickListener(this));
 
-            GroupService service = new GroupService(sessionFromCurrentSession);
+            JSONObject command = new JSONObject();
+            command.put("/group/get-user-sites", new JSONObject());
 
-            service.getUserSites();
+            sessionFromCurrentSession.invoke(command);
+
+            //GroupService service = new GroupService(sessionFromCurrentSession);
+
+            //service.getUserSites();
         }
         catch (Exception e) {
             Log.e(_TAG, "Error during service call", e);
