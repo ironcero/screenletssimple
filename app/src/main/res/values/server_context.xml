@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="liferay_server">https://10.125.124.53:8443</string>
-    <string name="liferay_company_id">10155</string>
-    <string name="liferay_group_id">10182</string>
+    <string name="liferay_server">https://pcr.desa.sir.renfe.es</string>
+    <string name="liferay_company_id">20155</string>
+    <string name="liferay_group_id">20182</string>
     <string name="liferay_portal_version">62</string>
 </resources>
